@@ -10,7 +10,6 @@ def welcome():
             print('\nUsername can not be only spaces.')
         else:
             are_you_sure = input(f'\nAre you sure you want to choose {username} as your username? \n[Y/N]: ').upper()
-
     return print(f'Hi ' + username + ' and welcome to the World of Games: The Epic Journey')
 
 
@@ -44,6 +43,16 @@ def start_play():
             print('\nDigits only accepted.')
 
     result = [[' ','Memory Game','Guess Game','Currency Roulette'],[' ','first','second','third','fourth','fifth']]
-    return print(f"""\n You have chosen {str(result[0][game])}, 
+    print(f"""\n You have chosen {str(result[0][game])}, 
     with {str(result[1][difficult])} level of difficulty.
     \n Let the Game begin!""")
+    if game == 1:
+        import memory_game
+        memory_game.play(difficult)
+    elif game == 2:
+        import guess_game
+        guess_game.play(difficult)
+    elif game == 3:
+        import currency_roulette_game
+        currency_roulette_game.play(difficult)
+    return difficult

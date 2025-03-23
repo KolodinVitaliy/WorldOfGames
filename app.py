@@ -1,21 +1,21 @@
-def welcome():
+import score
 
-    username = ' '
+
+def welcome():
+    username = None
     are_you_sure = None
     while not username or username.isspace() or not are_you_sure == 'Y':
-        username = input('Please enter your username: ')
+        username = input('Please enter your username:')
         if not username:
             print('\nUsername can not be empty.')
         elif username.isspace():
             print('\nUsername can not be only spaces.')
         else:
             are_you_sure = input(f'\nAre you sure you want to choose {username} as your username? \n[Y/N]: ').upper()
-    return print(f'Hi ' + username + ' and welcome to the World of Games: The Epic Journey')
+    return username , print(f'Hi ' + username + ' and welcome to the World of Games: The Epic Journey')
 
 
-def start_play():
-
-    global game
+def start_play(username):
     game = None
     while game not in range(1,4):
         game = input("""\n Please choose a game to play:
@@ -30,7 +30,6 @@ def start_play():
         else:
             print('\nDigits only accepted.')
 
-    global difficult
     difficult = None
     while not difficult in range(1,6):
         difficult = input("""\n Please choose the difficulty level between 1 and 5,
@@ -48,11 +47,11 @@ def start_play():
     \n Let the Game begin!""")
     if game == 1:
         import memory_game
-        memory_game.play(difficult)
+        score.add_score(difficult,username) if memory_game.play(difficult) == True else False
     elif game == 2:
         import guess_game
-        guess_game.play(difficult)
+        score.add_score(difficult,username) if guess_game.play(difficult) == True else False
     elif game == 3:
         import currency_roulette_game
-        currency_roulette_game.play(difficult)
+        score.add_score(difficult,username) if currency_roulette_game.play(difficult) == True else False
     return difficult

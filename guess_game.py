@@ -22,13 +22,12 @@ def get_guess_from_user(difficult):
             print('\nDigits only accepted.')
     return user_input
 
-
-def compare_results(secret_number, user_input):
-
-    return True if secret_number == user_input else False
-
-
 def play(difficult):
-
     utils.screen_cleaner()
-    return print(True) if compare_results(generate_number(difficult), get_guess_from_user(difficult)) == True else print(False)
+    print(f'In this game you have to guess number between 0 and {difficult} \nGood Luck!')
+    if generate_number(difficult) == get_guess_from_user(difficult):
+        print('Right guess. Congratulations!')
+        return True
+    else:
+        print('Bad guess. Try better next time.')
+        return False

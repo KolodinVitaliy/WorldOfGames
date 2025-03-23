@@ -1,3 +1,4 @@
 from app import start_play, welcome
-welcome()
-start_play()
+
+username = welcome()[0]
+start_play(username)
